@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import {connect} from "react-redux";
-import {fetchWeather} from "../actions";
+import {fetchWeather, getLocation} from "../actions";
 
 class WeatherDay extends Component {
     componentDidMount() {
+        this.props.getLocation();
+        //this.props.fetchWeather();
+    }
+    componentDidUpdate() {
         this.props.fetchWeather();
     }
-
-
     render() {
     return (
       <div className="ui segment">
@@ -28,4 +30,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, {fetchWeather})(WeatherDay);
+export default connect(mapStateToProps, { fetchWeather, getLocation})(WeatherDay);

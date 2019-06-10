@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import WeatherDay from "./WeatherDay";
-import {getLocation} from "../apis/browserLocation";
-//import {getWeather} from "../apis/openWeather";
+import {getLocation} from "../actions/index";
 
 class App extends Component {
 
 
   componentDidMount() {
-      getLocation();
+     // this.getLocation();
      // getWeather();
   }
 
