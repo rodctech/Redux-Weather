@@ -14,20 +14,20 @@ const WeatherDay = () => {
   }, []);
 
   return (
-    <div className="ui segment">
-      <div className="ui center grey aligned header">TheDay</div>
-      <div className="ui center grey aligned header">
-        <i className="sun icon" />
-      </div>
+    <div className="ui  container">
       {weather[0] &&
         weather.map(e => (
-          <div key={e.endTime}>
-            {e.name}: {e.detailedForecast}
+          <div className="ui segment" key={e.endTime}>
+            <div className="ui center grey aligned header">{e.name}</div>
+            <div className="ui center aligned header">
+              <img src={e.icon} alt="forecast image" />
+            </div>
+            <p className="forecast">{e.detailedForecast}</p>
           </div>
         ))}
-      <div className="ui center grey aligned sub header">Min:75° Max:80°</div>
     </div>
   );
 };
 
 export default WeatherDay;
+

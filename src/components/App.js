@@ -7,7 +7,7 @@ class App extends Component {
 		return (
 			<div>
 				<h1 className="ui center aligned header"> Weather App </h1>
-				<div className="ui container horizontal segments">
+				<div className="ui raised very padded text container segment">
 					<WeatherDay />
 				</div>
 			</div>
