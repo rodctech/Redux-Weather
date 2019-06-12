@@ -1,10 +1,10 @@
-import weatherData from "../apis/openWeather";
 import axios from "axios";
+import weatherData from "../apis/openWeather";
 
 export const FETCH_WEATHER = "FETCH_WEATHER";
 export const FETCH_LOCATION = "FETCH_LOCATION";
 
-export const getLocation = () => async dispatch => {
+export const fetchLocation = () => async dispatch => {
   await window.navigator.geolocation.getCurrentPosition(
     position => {
       console.log("Starting getLocation");
@@ -28,9 +28,11 @@ export const getLocation = () => async dispatch => {
 
 export const fetchWeather = (lat, long) => async dispatch => {
   console.log("Starting Fetch Weater");
+
   const response = await weatherData.get(`/points/${lat},${long}`);
   const gridURL = response.data.properties.forecast;
 
   const forecast = await axios.get(gridURL);
   dispatch({ type: FETCH_WEATHER, payload: forecast.data.properties.periods });
+  console.log("Forecast updated in store");
 };

@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchWeather, getLocation } from "../actions";
+import { fetchWeather, fetchLocation } from "../actions";
 
 class WeatherDay extends Component {
     componentDidMount() {
-        this.getLocationWeather();
+        this.serialChaining();
+        //this.props.fetchLocation();
+        //this.props.doEverything();
     }
 
-    async getLocationWeather() {
-        await this.doJob(1, 2);
-
-        await this.props.getLocation();
-        //     await this.props.fetchWeather();
-    }
+    componentDidUpdate() {}
 
     doJob(x, sec) {
         return new Promise(resolve => {
@@ -24,15 +21,19 @@ class WeatherDay extends Component {
         });
     }
 
-    // async serialChaining() {
-    //     let result1 = await this.getLocation();
-    //     let result2 = await this.doJob(2, 2);
-    //     let result3 = await this.doJob(3, 3);
+    async serialChaining() {
+        let result1 = await this.doJob(1, 3);
+        let result2 = await this.props.fetchLocation();
 
-    //     let finalResult = result1 + result2 + result3;
-    //     console.log(finalResult);
-    //     return finalResult;
-    // }
+        let result3 = await this.doJob(2, 3);
+
+        let lat = this.props.weather.locationData[0];
+        let long = this.props.weather.locationData[1];
+        let result4 = await this.props.fetchWeather(lat, long);
+
+        let finalResult = result1 + result2 + result3 + result4;
+        return finalResult;
+    }
 
     render() {
         return (
@@ -53,11 +54,11 @@ class WeatherDay extends Component {
 
 const mapStateToProps = state => {
     return {
-        weather: state.response
+        weather: state.weatherReducer
     };
 };
 
 export default connect(
     mapStateToProps,
-    { fetchWeather, getLocation }
+    { fetchWeather, fetchLocation }
 )(WeatherDay);
