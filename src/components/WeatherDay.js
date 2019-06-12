@@ -22,8 +22,9 @@ class WeatherDay extends Component {
     }
 
     async serialChaining() {
-        let result1 = await this.doJob(1, 3);
-        let result2 = await this.props.fetchLocation();
+        let result1 = await this.props.fetchLocation();
+
+        let result2 = await this.doJob(1, 3);
 
         let result3 = await this.doJob(2, 3);
 
@@ -38,7 +39,6 @@ class WeatherDay extends Component {
     render() {
         return (
             <div className="ui segment">
-                <div> Current Lat and Long {}</div>
                 <div className="ui center grey aligned header">TheDay</div>
                 <div className="ui center grey aligned header">
                     <i className="sun icon" />
