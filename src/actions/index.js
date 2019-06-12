@@ -1,38 +1,46 @@
 import axios from "axios";
+//import "babel-core/polyfill"; // so I can use Promises
+//import fetch from "isomorphic-fetch"; // so I can use fetch()
 import weatherData from "../apis/openWeather";
 
 export const FETCH_WEATHER = "FETCH_WEATHER";
 export const FETCH_LOCATION = "FETCH_LOCATION";
 
-export const fetchLocation = () => async dispatch => {
-  await window.navigator.geolocation.getCurrentPosition(
-    position => {
-      console.log("Starting getLocation");
+export const getLocalWeather = () => async dispatch => {
+  let newLocation = await fetchLocation();
+  let newWeather = await fetchWeather(newLocation);
 
-      const lat = position.coords.latitude;
-      const long = position.coords.longitude;
-
-      const latlong = [];
-
-      latlong.push(lat);
-      latlong.push(long);
-
-      dispatch({ type: FETCH_LOCATION, payload: latlong });
-
-      console.log("Location Succesfully recieved:", latlong);
-    },
-    err => ({ errorMessage: err.message })
-  );
-  // const response = await console.log(this.weatherReducer);
+  dispatch({ type: FETCH_WEATHER, payload: newWeather });
 };
 
-export const fetchWeather = (lat, long) => async dispatch => {
-  console.log("Starting Fetch Weater");
+export const fetchWeather = ({ lat, long }) => {
+  return new Promise(async (success, error) => {
+    try {
+      const response = await weatherData.get(`/points/${lat},${long}`);
+      const gridURL = response.data.properties.forecast;
+      const forecast = await axios.get(gridURL);
 
-  const response = await weatherData.get(`/points/${lat},${long}`);
-  const gridURL = response.data.properties.forecast;
+      success(forecast.data.properties.periods);
+    } catch (err) {
+      error(err);
+    }
+  });
+};
 
-  const forecast = await axios.get(gridURL);
-  dispatch({ type: FETCH_WEATHER, payload: forecast.data.properties.periods });
-  console.log("Forecast updated in store");
+export const fetchLocation = () => {
+  return new Promise(async (success, error) => {
+    window.navigator.geolocation.getCurrentPosition(
+      position => {
+        const positionResponse = {
+          lat: position.coords.latitude,
+          long: position.coords.longitude
+        };
+
+        success(positionResponse);
+      },
+      err => {
+        error(err);
+      }
+    );
+  });
 };
