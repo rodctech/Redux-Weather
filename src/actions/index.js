@@ -1,16 +1,24 @@
 import axios from "axios";
-//import "babel-core/polyfill"; // so I can use Promises
-//import fetch from "isomorphic-fetch"; // so I can use fetch()
 import weatherData from "../apis/openWeather";
 
 export const FETCH_WEATHER = "FETCH_WEATHER";
 export const FETCH_LOCATION = "FETCH_LOCATION";
+export const FETCH_DAY_TIME_TEMP = "FETCH_DAY_TIME_TEMP";
+export const FETCH_NIGHT_TIME_TEMP = "FETCH_NIGHT_TIME_TEMP";
+export const SELECTED_DAY = "SELECTED_DAY";
 
 export const getLocalWeather = () => async dispatch => {
   let newLocation = await fetchLocation();
   let newWeather = await fetchWeather(newLocation);
 
   dispatch({ type: FETCH_WEATHER, payload: newWeather });
+  console.log(newWeather);
+};
+
+export const onDaySelect = day => {
+  let selectedDays = [day, day + 1];
+  //dispatch({ type: SELECTED_DAY, payload: selectedDays });
+  console.log(selectedDays);
 };
 
 export const fetchWeather = ({ lat, long }) => {
