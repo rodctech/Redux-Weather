@@ -1,11 +1,16 @@
-import { FETCH_WEATHER} from "../actions";
+import { FETCH_WEATHER, SELECTED_DAY } from "../actions";
 
-export const weatherReducer = (state= {weatherData:[]}, action) => {
-    switch (action.type) {
-        case FETCH_WEATHER:
-            return {...state, weatherData: action.payload};
+export const weatherReducer = (
+	state = { weatherData: [], selectedDay: null },
+	action
+) => {
+	switch (action.type) {
+		case FETCH_WEATHER:
+			return { ...state, weatherData: action.payload };
+		case SELECTED_DAY:
+			return { ...state, selectedDay: action.payload };
 
-        default:
-            return state;
-    }
+		default:
+			return state;
+	}
 };
