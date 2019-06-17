@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import WeatherDay from "./WeatherDay";
-
+import WeatherDetail from "./WeatherDetail";
 class App extends Component {
   render() {
     return (
@@ -9,6 +9,7 @@ class App extends Component {
         <div className="ui container horizontal segments">
           <WeatherDay />
         </div>
+        <WeatherDetail />
       </div>
     );
   }

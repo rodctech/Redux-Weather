@@ -4,8 +4,6 @@ import weatherData from "../apis/openWeather";
 export const FETCH_WEATHER = "FETCH_WEATHER";
 
 export const FETCH_LOCATION = "FETCH_LOCATION";
-export const FETCH_DAY_TIME_TEMP = "FETCH_DAY_TIME_TEMP";
-export const FETCH_NIGHT_TIME_TEMP = "FETCH_NIGHT_TIME_TEMP";
 export const SELECTED_DAY = "SELECTED_DAY";
 
 export const getLocalWeather = () => async dispatch => {
@@ -14,12 +12,6 @@ export const getLocalWeather = () => async dispatch => {
 
   dispatch({ type: FETCH_WEATHER, payload: newWeather });
   console.log(newWeather);
-};
-
-export const onDaySelect = day => {
-  let selectedDays = [day, day + 1];
-  //dispatch({ type: SELECTED_DAY, payload: selectedDays });
-  console.log(selectedDays);
 };
 
 export const fetchWeather = ({ lat, long }) => {
@@ -54,19 +46,10 @@ export const fetchLocation = () => {
   });
 };
 
-export const onDaySelect = day => {
-  let selectedDays = [day, day + 1];
-  console.log(selectedDays);
-
-  //setTimeout(1.4);
-
-  // await dispatch({ type: SELECTED_DAY, payload: selectedDays });
+export const onDaySelect = (day, night) => async dispatch => {
+  let selectedDay = await [day, night];
+  dispatch({ type: SELECTED_DAY, payload: selectedDay });
+  console.log(selectedDay);
 };
 
-export const setDaySelect = day => async dispatch => {
-  console.log("Running dispatch");
-
-  let newSelectedDays = await onDaySelect(day);
-
-  dispatch({ type: SELECTED_DAY, payload: newSelectedDays });
-};
+//async dispatch => {

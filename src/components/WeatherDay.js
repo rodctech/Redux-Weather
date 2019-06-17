@@ -13,6 +13,7 @@ class WeatherDay extends Component {
     }
 
     render() {
+        console.log(this.props);
         const weather = this.props.weather.weatherData;
         const dayWeather = weather.filter(e => {
             return e.isDaytime === true;
@@ -23,7 +24,9 @@ class WeatherDay extends Component {
                 <div
                     className="ui segment"
                     key={e.startTime}
-                    onClick={() => onDaySelect(e.number)}
+                    onClick={() =>
+                        this.props.onDaySelect(e.number, e.number + 1)
+                    }
                 >
                     <div className="ui center grey aligned header">
                         {e.name}
@@ -48,5 +51,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { fetchWeather, fetchLocation, getLocalWeather }
+    { fetchWeather, fetchLocation, getLocalWeather, onDaySelect }
 )(WeatherDay);

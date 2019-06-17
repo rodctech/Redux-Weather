@@ -1,7 +1,7 @@
 import { FETCH_WEATHER, SELECTED_DAY } from "../actions";
 
 export const weatherReducer = (
-	state = { weatherData: [], selectedDay: "" },
+	state = { weatherData: [], selectedDay: null },
 	action
 ) => {
 	switch (action.type) {
