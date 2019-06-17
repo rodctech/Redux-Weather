@@ -1,18 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchWeather, fetchLocation, getLocalWeather } from "../actions";
+import {
+    fetchWeather,
+    fetchLocation,
+    getLocalWeather,
+    onDaySelect
+} from "../actions";
 
 class WeatherDay extends Component {
     componentDidMount() {
         this.props.getLocalWeather();
     }
 
-    componentDidUpdate() {}
-
     render() {
-        return (
-            <div className="ui segment">
-                <div className="ui center grey aligned header">TheDay</div>
+        const weather = this.props.weather.weatherData;
+        const dayWeather = weather.filter(e => {
+            return e.isDaytime === true;
+        });
+
+        return dayWeather.map(e => (
+            <div
+                className="ui segment"
+                key={e.endTime}
+                onClick={() => onDaySelect(e.number)}
+            >
+                <div className="ui center grey aligned header">{e.name}</div>
                 <div className="ui center grey aligned header">
                     <i className="sun icon" />
                 </div>
@@ -21,7 +33,7 @@ class WeatherDay extends Component {
                     Min:75° Max:80°
                 </div>
             </div>
-        );
+        ));
     }
 }
 
@@ -33,5 +45,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { fetchWeather, fetchLocation, getLocalWeather }
+    { fetchWeather, fetchLocation, getLocalWeather, onDaySelect }
 )(WeatherDay);
