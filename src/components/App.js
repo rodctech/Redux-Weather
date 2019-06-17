@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import WeatherDay from "./WeatherDay";
-//import {getLocation} from "../actions/index";
 
 class App extends Component {
   render() {

@@ -18,22 +18,25 @@ class WeatherDay extends Component {
             return e.isDaytime === true;
         });
 
-        return dayWeather.map(e => (
-            <div
-                className="ui segment"
-                key={e.endTime}
-                onClick={() => onDaySelect(e.number)}
-            >
-                <div className="ui center grey aligned header">{e.name}</div>
-                <div className="ui center grey aligned header">
-                    <i className="sun icon" />
+        return dayWeather.map(e => {
+            return (
+                <div
+                    className="ui segment"
+                    key={e.startTime}
+                    onClick={() => onDaySelect(e.number)}
+                >
+                    <div className="ui center grey aligned header">
+                        {e.name}
+                    </div>
+                    <div className="ui center grey aligned header">
+                        <div className="ui center grey aligned sub header">
+                            <img src={e.icon} alt="icon" />
+                        </div>
+                        {e.temperature}
+                    </div>
                 </div>
-
-                <div className="ui center grey aligned sub header">
-                    Min:75° Max:80°
-                </div>
-            </div>
-        ));
+            );
+        });
     }
 }
 
@@ -45,5 +48,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { fetchWeather, fetchLocation, getLocalWeather, onDaySelect }
+    { fetchWeather, fetchLocation, getLocalWeather }
 )(WeatherDay);
