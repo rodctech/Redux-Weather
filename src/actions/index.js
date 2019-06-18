@@ -11,7 +11,7 @@ export const getLocalWeather = () => async dispatch => {
   let newWeather = await fetchWeather(newLocation);
 
   dispatch({ type: FETCH_WEATHER, payload: newWeather });
-  console.log(newWeather);
+  //  console.log(newWeather);
 };
 
 export const fetchWeather = ({ lat, long }) => {

@@ -11,9 +11,9 @@ class WeatherDay extends Component {
     componentDidMount() {
         this.props.getLocalWeather();
     }
+    componentDidUpdate() {}
 
     render() {
-        console.log(this.props);
         const weather = this.props.weather.weatherData;
         const dayWeather = weather.filter(e => {
             return e.isDaytime === true;
