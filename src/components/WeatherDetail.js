@@ -30,12 +30,23 @@ class WeatherDetail extends Component {
 				<div className="ui segments">
 					<div className="ui segment">
 						<h2>{dayWeather[0].name}</h2>
-						<p>{dayWeather[0].detailedForecast}</p>
+						<img
+							className="ui centered rounded small image"
+							src={dayWeather[0].icon}
+							alt="icon"
+						/>
+
+						<h5>{dayWeather[0].detailedForecast}</h5>
 					</div>
 					<div className="ui secondary segment">
 						<h2>{nightWeather[0].name}</h2>
+						<img
+							className="ui centered rounded small image"
+							src={nightWeather[0].icon}
+							alt="icon"
+						/>
 
-						<p>Secondary Content</p>
+						<h5>{nightWeather[0].detailedForecast}</h5>
 					</div>
 				</div>
 			</div>
