@@ -28,12 +28,12 @@ class WeatherDay extends Component {
                         this.props.onDaySelect(e.number, e.number + 1)
                     }
                 >
-                    <div className="ui center grey aligned header">
+                    <div className="ui center aligned sub header">
                         {e.name}
                     </div>
-                    <div className="ui center grey aligned header">
-                        <div className="ui center grey aligned sub header">
-                            <img src={e.icon} alt="icon" />
+                    <div className="ui center aligned header">
+                        <div className="ui center aligned sub header">
+                            <img className={"ui mini circular image" } src={e.icon} alt="icon" />
                         </div>
                         {e.temperature}
                     </div>

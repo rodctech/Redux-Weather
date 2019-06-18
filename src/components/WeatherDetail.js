@@ -15,7 +15,7 @@ class WeatherDetail extends Component {
 		if (!this.props.weather.selectedDay) {
 			return (
 				<div className="ui container segment">
-					To seedetailed forcast please click on a day...
+					To see Detailed Forecast please click on a day...
 				</div>
 			);
 		}
@@ -25,17 +25,19 @@ class WeatherDetail extends Component {
 		const nightWeather = weather.filter(e => {
 			return e.number === renderDays[1];
 		});
+
 		return (
 			<div className="ui container">
 				<div className="ui segments">
 					<div className="ui segment">
-						<h2>{dayWeather[0].name}</h2>
+						<h3>{dayWeather[0].name}</h3>
+						<img className={"ui small left  rounded image"} src={dayWeather[0].icon} alt="icon" />
 						<p>{dayWeather[0].detailedForecast}</p>
 					</div>
-					<div className="ui secondary segment">
-						<h2>{nightWeather[0].name}</h2>
-
-						<p>Secondary Content</p>
+					<div className="ui segment">
+						<h3>{nightWeather[0].name}</h3>
+						<img className={"ui small left  rounded image"} src={nightWeather[0].icon} alt="icon" />
+						<p>{nightWeather[0].detailedForecast}</p>
 					</div>
 				</div>
 			</div>
