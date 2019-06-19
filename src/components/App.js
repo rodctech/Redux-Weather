@@ -1,13 +1,19 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import WeatherDay from "./WeatherDay";
+
 import WeatherDetail from "./WeatherDetail";
+import City from "./City";
+import Spinner from "./Spinner";
+
 import "./App.css";
 class App extends Component {
-  componentDidMount() {}
   render() {
     return (
       <div id="wrapper">
         <h1 className="ui center white aligned header"> Weather App </h1>
+        <City />
         <div className="ui container horizontal segments">
           <WeatherDay />
         </div>
@@ -16,5 +22,10 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    weather: state.weatherReducer
+  };
+};
 
-export default App;
+export default connect(mapStateToProps)(App);

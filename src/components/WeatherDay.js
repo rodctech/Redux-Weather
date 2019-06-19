@@ -12,7 +12,6 @@ class WeatherDay extends Component {
     componentDidMount() {
         this.props.getLocalWeather();
     }
-    componentDidUpdate() {}
 
     render() {
         const weather = this.props.weather.weatherData;

@@ -1,5 +1,6 @@
 import axios from "axios";
 import weatherData from "../apis/openWeather";
+import addressData from "../apis/openCage";
 
 export const FETCH_WEATHER = "FETCH_WEATHER";
 
@@ -9,9 +10,10 @@ export const SELECTED_DAY = "SELECTED_DAY";
 export const getLocalWeather = () => async dispatch => {
   let newLocation = await fetchLocation();
   let newWeather = await fetchWeather(newLocation);
+  let currentCity = await fetchCurrentCity(newLocation);
 
   dispatch({ type: FETCH_WEATHER, payload: newWeather });
-  dispatch({ type: FETCH_LOCATION, payload: newLocation });
+  dispatch({ type: FETCH_LOCATION, payload: currentCity });
   //  console.log(newWeather);
 };
 
@@ -44,6 +46,20 @@ export const fetchLocation = () => {
         error(err);
       }
     );
+  });
+};
+
+export const fetchCurrentCity = ({ lat, long }) => {
+  return new Promise(async (success, error) => {
+    try {
+      const response = await addressData.get(
+        `?q=${lat}+${long}&key=bf6078b1e5eb41e38e78ea3209e0817c`
+      );
+
+      success(response.data.results[0].components);
+    } catch (err) {
+      error(err);
+    }
   });
 };
 
