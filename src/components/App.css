@@ -1,0 +1,25 @@
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+
+#root {
+	min-height: 100%;
+	background-image: url("https://images.pexels.com/photos/2388650/pexels-photo-2388650.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=750&amp;w=1260");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.imageBack {
+}
+
+.papaya {
+	background: papayawhip !important;
+}
+.white {
+	color: white !important;
+}
+.spinner {
+	height: 150px;
+}
