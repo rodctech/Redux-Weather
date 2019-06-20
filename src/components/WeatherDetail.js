@@ -26,7 +26,7 @@ class WeatherDetail extends Component {
 			return e.number === renderDays[1];
 		});
 		return (
-			<div className="ui container">
+			<div className="details">
 				<div className="ui segments ">
 					<div className="ui segment papaya">
 						<h2>{dayWeather[0].name}</h2>

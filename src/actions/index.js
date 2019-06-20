@@ -14,7 +14,6 @@ export const getLocalWeather = () => async dispatch => {
 
   dispatch({ type: FETCH_WEATHER, payload: newWeather });
   dispatch({ type: FETCH_LOCATION, payload: currentCity });
-  //  console.log(newWeather);
 };
 
 export const fetchWeather = ({ lat, long }) => {
@@ -66,7 +65,5 @@ export const fetchCurrentCity = ({ lat, long }) => {
 export const onDaySelect = (day, night) => async dispatch => {
   let selectedDay = await [day, night];
   dispatch({ type: SELECTED_DAY, payload: selectedDay });
-  console.log(selectedDay);
 };
 
-//async dispatch => {

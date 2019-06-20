@@ -7,11 +7,21 @@ body {
 #root {
 	min-height: 100%;
 	background-image: url("https://images.pexels.com/photos/2388650/pexels-photo-2388650.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=750&amp;w=1260");
-	background-size: 100%;
+	background-size: 105%;
 	background-repeat: no-repeat;
 }
+#footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 25px;
+	text-align: center;
+	padding: 3px 0px 0px 0;
+	background: #6cf;
+}
 
-.imageBack {
+.details {
+	margin-bottom: 20px;
 }
 
 .papaya {
@@ -21,6 +31,8 @@ body {
 	color: white !important;
 	padding: 20px 20px 0px 20px !important;
 }
+
 .spinner {
 	height: 150px;
 }
+
