@@ -14,7 +14,7 @@ class WeatherDetail extends Component {
     const weather = this.props.weather.weatherData;
     if (!this.props.weather.selectedDay) {
       return (
-        <div className="ui container segment">
+        <div className="ui container segment papaya">
           To seedetailed forcast please click on a day...
         </div>
       );
@@ -26,29 +26,27 @@ class WeatherDetail extends Component {
       return e.number === renderDays[1];
     });
     return (
-      <div className="ui container">
-        <div className="ui segments">
-          <div className="ui segment">
+      <div className="details">
+        <div className="ui segments ">
+          <div className="ui segment papaya">
+            <h2>{dayWeather[0].name}</h2>
             <img
-              className="ui centered small circular image"
+              className="ui centered rounded small image"
               src={dayWeather[0].icon}
               alt="icon"
             />
-            <h2>{dayWeather[0].name}</h2>
-            <p>Description: {dayWeather[0].shortForecast}</p>
-            <p>Temperature: {dayWeather[0].temperature} </p>
-            <p>Wind Speed: {dayWeather[0].windSpeed}</p>
+
+            <h5>{dayWeather[0].detailedForecast}</h5>
           </div>
-          <div className="ui secondary segment">
+          <div className="ui secondary segment ">
+            <h2>{nightWeather[0].name}</h2>
             <img
-              className="ui centered small circular image"
+              className="ui centered rounded small image"
               src={nightWeather[0].icon}
               alt="icon"
             />
-            <h2>{nightWeather[0].name}</h2>
-            <p>Description: {nightWeather[0].shortForecast}</p>
-            <p>Temperature: {nightWeather[0].temperature} </p>
-            <p>Wind Speed: {nightWeather[0].windSpeed}</p>
+
+            <h5>{nightWeather[0].detailedForecast}</h5>
           </div>
         </div>
       </div>
