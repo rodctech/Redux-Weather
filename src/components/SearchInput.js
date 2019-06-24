@@ -20,7 +20,6 @@ class SearchInput extends React.Component {
 
   handleSelect = address => {
     geocodeByAddress(address)
-      .then(console.log(address))
       .then(this.setState({ address: address }))
       .then(results => getLatLng(results[0]))
       .then(latLng => this.props.getInputWeather(latLng))
