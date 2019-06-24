@@ -34,6 +34,7 @@ export const fetchWeather = ({ lat, lng }) => {
 
       const response = await weatherData.get(`/points/${lat},${lng}`);
       const gridURL = response.data.properties.forecast;
+      //console.log(response.data.properties);
       const forecast = await axios.get(gridURL);
       success(forecast.data.properties.periods);
     } catch (err) {

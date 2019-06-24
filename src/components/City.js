@@ -7,8 +7,10 @@ class City extends React.Component {
 			<div className="white ">
 				Currently Displaying Weather For:
 				<br />
-				{this.props.weather.locationData.city},{" "}
-				{this.props.weather.locationData.state_code}
+				{this.props.weather.locationData.city ||
+					this.props.weather.locationData.town ||
+					this.props.weather.locationData.village}
+				, {this.props.weather.locationData.state_code}
 			</div>
 		);
 	}
