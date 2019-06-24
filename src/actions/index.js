@@ -16,13 +16,25 @@ export const getLocalWeather = () => async dispatch => {
   dispatch({ type: FETCH_LOCATION, payload: currentCity });
 };
 
-export const fetchWeather = ({ lat, long }) => {
+export const getInputWeather = latLng => async dispatch => {
+  //  let newLocation = await fetchLocation();
+  console.log(latLng);
+  let newLocation = latLng;
+  let newWeather = await fetchWeather(newLocation);
+  let currentCity = await fetchCurrentCity(newLocation);
+
+  dispatch({ type: FETCH_WEATHER, payload: newWeather });
+  dispatch({ type: FETCH_LOCATION, payload: currentCity });
+};
+
+export const fetchWeather = ({ lat, lng }) => {
   return new Promise(async (success, error) => {
     try {
-      const response = await weatherData.get(`/points/${lat},${long}`);
+      //  console.log("Lat ", lat, " Long ", lng);
+
+      const response = await weatherData.get(`/points/${lat},${lng}`);
       const gridURL = response.data.properties.forecast;
       const forecast = await axios.get(gridURL);
-
       success(forecast.data.properties.periods);
     } catch (err) {
       error(err);
@@ -36,7 +48,7 @@ export const fetchLocation = () => {
       position => {
         const positionResponse = {
           lat: position.coords.latitude,
-          long: position.coords.longitude
+          lng: position.coords.longitude
         };
 
         success(positionResponse);
@@ -48,11 +60,11 @@ export const fetchLocation = () => {
   });
 };
 
-export const fetchCurrentCity = ({ lat, long }) => {
+export const fetchCurrentCity = ({ lat, lng }) => {
   return new Promise(async (success, error) => {
     try {
       const response = await addressData.get(
-        `?q=${lat}+${long}&key=bf6078b1e5eb41e38e78ea3209e0817c`
+        `?q=${lat}+${lng}&key=bf6078b1e5eb41e38e78ea3209e0817c`
       );
 
       success(response.data.results[0].components);
