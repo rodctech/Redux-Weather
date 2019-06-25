@@ -1,55 +1,59 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Spinner from "./Spinner";
 import {
-    fetchWeather,
-    fetchLocation,
-    getLocalWeather,
-    onDaySelect
+  fetchWeather,
+  fetchLocation,
+  getLocalWeather,
+  onDaySelect
 } from "../actions";
 
 class WeatherDay extends Component {
-    componentDidMount() {
-        this.props.getLocalWeather();
-    }
-    componentDidUpdate() {}
+  componentDidMount() {
+    this.props.getLocalWeather();
+  }
 
-    render() {
-        const weather = this.props.weather.weatherData;
-        const dayWeather = weather.filter(e => {
-            return e.isDaytime === true;
-        });
+  render() {
+    const weather = this.props.weather.weatherData;
+    const dayWeather = weather.filter(e => {
+      return e.isDaytime === true;
+    });
 
-        return dayWeather.map(e => {
-            return (
-                <div
-                    className="ui segment"
-                    key={e.startTime}
-                    onClick={() =>
-                        this.props.onDaySelect(e.number, e.number + 1)
-                    }
-                >
-                    <div className="ui center aligned sub header">
-                        {e.name}
-                    </div>
-                    <div className="ui center aligned header">
-                        <div className="ui center aligned sub header">
-                            <img className={"ui mini circular image" } src={e.icon} alt="icon" />
-                        </div>
-                        {e.temperature}
-                    </div>
-                </div>
-            );
-        });
+    if (this.props.weather.weatherData[0] === undefined) {
+      return (
+        <div className="spinner">
+          <Spinner />
+        </div>
+      );
     }
+
+    return dayWeather.map(e => {
+      return (
+        <div
+          className="ui segment papaya"
+          key={e.startTime}
+          onClick={() => this.props.onDaySelect(e.number, e.number + 1)}
+        >
+          <div className="ui center  aligned header">{e.name}</div>
+          <div className="ui center  aligned header">
+            <div className="ui center  aligned  header">
+              <img src={e.icon} alt="icon" />
+            </div>
+            <div className="ui center aligned  header">{e.temperature}</div>
+          </div>
+        </div>
+      );
+    });
+  }
 }
 
 const mapStateToProps = state => {
-    return {
-        weather: state.weatherReducer
-    };
+  return {
+    weather: state.weatherReducer
+  };
 };
 
 export default connect(
-    mapStateToProps,
-    { fetchWeather, fetchLocation, getLocalWeather, onDaySelect }
+  mapStateToProps,
+  { fetchWeather, fetchLocation, getLocalWeather, onDaySelect }
 )(WeatherDay);
