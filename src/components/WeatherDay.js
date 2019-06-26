@@ -30,14 +30,18 @@ class WeatherDay extends Component {
     return dayWeather.map(e => {
       return (
         <div
-          className="ui segment papaya"
+          className="ui segment"
           key={e.startTime}
           onClick={() => this.props.onDaySelect(e.number, e.number + 1)}
         >
           <div className="ui center  aligned header">{e.name}</div>
           <div className="ui center  aligned header">
             <div className="ui center  aligned  header">
-              <img src={e.icon} alt="icon" />
+              <img
+                className="ui medium circular image"
+                src={e.icon}
+                alt="icon"
+              />
             </div>
             <div className="ui center aligned  header">{e.temperature}</div>
           </div>

@@ -36,9 +36,11 @@ class WeatherDetail extends Component {
               alt="icon"
             />
 
-            <h5>{dayWeather[0].detailedForecast}</h5>
+            <h5 className={"detailForecast"}>
+              {dayWeather[0].detailedForecast}
+            </h5>
           </div>
-          <div className="ui secondary segment ">
+          <div className="ui secondary segment night ">
             <h2>{nightWeather[0].name}</h2>
             <img
               className="ui centered rounded small image"
@@ -46,7 +48,9 @@ class WeatherDetail extends Component {
               alt="icon"
             />
 
-            <h5>{nightWeather[0].detailedForecast}</h5>
+            <h5 className={"detailForecast"}>
+              {nightWeather[0].detailedForecast}
+            </h5>
           </div>
         </div>
       </div>
