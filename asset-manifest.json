@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Redux-Weather/static/css/main.0a45d2c0.chunk.css",
+    "main.js": "/Redux-Weather/static/js/main.7ef959b4.chunk.js",
+    "main.js.map": "/Redux-Weather/static/js/main.7ef959b4.chunk.js.map",
+    "runtime~main.js": "/Redux-Weather/static/js/runtime~main.eb74b77d.js",
+    "runtime~main.js.map": "/Redux-Weather/static/js/runtime~main.eb74b77d.js.map",
+    "static/js/2.3177067e.chunk.js": "/Redux-Weather/static/js/2.3177067e.chunk.js",
+    "static/js/2.3177067e.chunk.js.map": "/Redux-Weather/static/js/2.3177067e.chunk.js.map",
+    "index.html": "/Redux-Weather/index.html",
+    "precache-manifest.3086c95178270697f0aa0c4b98da9c5f.js": "/Redux-Weather/precache-manifest.3086c95178270697f0aa0c4b98da9c5f.js",
+    "service-worker.js": "/Redux-Weather/service-worker.js",
+    "static/css/main.0a45d2c0.chunk.css.map": "/Redux-Weather/static/css/main.0a45d2c0.chunk.css.map"
+  }
+}
