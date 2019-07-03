@@ -1,4 +1,4 @@
-This project can be found LIVE @ https://rodctech.github.io/React-Weather
+This project can be found LIVE @ https://rodctech.github.io/Redux-Weather
 
 ## Available Scripts
 
